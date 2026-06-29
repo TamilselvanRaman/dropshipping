@@ -22,7 +22,7 @@ export const CategorySidebar: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("Smartphones");
 
   return (
-    <aside className="col-span-3 bg-surface-container-low rounded-xl p-4 flex flex-col gap-2 overflow-y-auto max-h-[550px] shadow-sm">
+    <aside className="hidden lg:flex lg:col-span-3 bg-surface-container-low rounded-xl p-4 flex-col gap-2 overflow-y-auto max-h-[550px] shadow-sm">
       <div className="mb-4">
         <h3 className="font-headline-sm text-headline-sm font-bold text-on-surface">Categories</h3>
         <p className="text-label-md text-on-surface-variant">Shop by Department</p>

@@ -25,20 +25,20 @@ const DEPARTMENTS: Department[] = [
 
 export const DepartmentGrid: React.FC = () => {
   return (
-    <section className="py-section-desktop select-none">
-      <div className="max-w-[1440px] mx-auto px-margin-desktop text-center">
+    <section className="py-section-mobile md:py-section-desktop select-none">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop text-center">
         <h2 className="font-headline-md text-headline-md font-extrabold text-on-surface mb-3">
           Shop By Department
         </h2>
-        <p className="text-on-surface-variant max-w-lg mx-auto mb-12 text-body-md font-medium">
+        <p className="text-on-surface-variant max-w-lg mx-auto mb-8 md:mb-12 text-body-md font-medium">
           Browse our wide selection of premium products across all categories.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-gutter">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-gutter">
           {DEPARTMENTS.map((dept) => (
             <a
               key={dept.name}
               href="#"
-              className={`group flex flex-col items-center gap-4 p-8 rounded-2xl ${dept.bgColorClass} border border-transparent hover:border-primary/20 hover:shadow-lg transition-all duration-300 active:scale-95`}
+              className={`group flex flex-col items-center gap-4 p-4 sm:p-8 rounded-2xl ${dept.bgColorClass} border border-transparent hover:border-primary/20 hover:shadow-lg transition-all duration-300 active:scale-95`}
             >
               {/* Circular Icon Container */}
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:bg-primary transition-colors duration-300">

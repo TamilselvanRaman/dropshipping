@@ -39,22 +39,28 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isCartOpen, setCartOpen] = useState(false);
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
   // Load cart from local storage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem("tokoo_cart");
     if (savedCart) {
       try {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setItems(JSON.parse(savedCart));
       } catch (e) {
         console.error("Failed to parse cart", e);
       }
     }
+    setIsLoaded(true);
   }, []);
 
   // Save cart to local storage on change
   useEffect(() => {
-    localStorage.setItem("tokoo_cart", JSON.stringify(items));
-  }, [items]);
+    if (isLoaded) {
+      localStorage.setItem("tokoo_cart", JSON.stringify(items));
+    }
+  }, [items, isLoaded]);
 
   const addToCart = (product: Product) => {
     setItems((prevItems) => {

@@ -49,11 +49,11 @@ const BENTO_PRODUCTS: Product[] = [
 
 export const BentoSection: React.FC = () => {
   return (
-    <section className="py-section-desktop select-none">
-      <div className="max-w-[1440px] mx-auto px-margin-desktop">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+    <section className="py-section-mobile md:py-section-desktop select-none">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
           {/* Vertical Banner Card */}
-          <div className="col-span-12 md:col-span-4 rounded-[2rem] overflow-hidden relative group h-[600px] md:h-[750px] shadow-sm border border-surface-container/20">
+          <div className="col-span-12 lg:col-span-4 rounded-[2rem] overflow-hidden relative group h-[400px] lg:h-auto lg:min-h-[600px] shadow-sm border border-surface-container/20">
             {/* Background Image */}
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
@@ -83,7 +83,7 @@ export const BentoSection: React.FC = () => {
           </div>
 
           {/* Grid of Product Cards */}
-          <div className="col-span-12 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter h-full">
+          <div className="col-span-12 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-gutter h-full">
             {BENTO_PRODUCTS.map((prod) => (
               <ProductCard key={prod.id} product={prod} />
             ))}

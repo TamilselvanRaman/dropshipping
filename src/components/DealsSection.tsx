@@ -77,10 +77,10 @@ export const DealsSection: React.FC = () => {
   };
 
   return (
-    <section className="mt-section-desktop py-12 bg-white border-y border-surface-container/30">
-      <div className="max-w-[1440px] mx-auto px-margin-desktop">
+    <section className="mt-section-mobile md:mt-section-desktop py-8 md:py-12 bg-white border-y border-surface-container/30">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
             <h2 className="font-headline-md text-headline-md font-extrabold text-on-surface">
               Deals of the Day
@@ -140,7 +140,7 @@ export const DealsSection: React.FC = () => {
           className="flex gap-gutter overflow-x-auto hide-scrollbar pb-6 scroll-smooth snap-x snap-mandatory"
         >
           {DEALS_PRODUCTS.map((prod) => (
-            <div key={prod.id} className="snap-start">
+            <div key={prod.id} className="snap-start min-w-[280px] sm:min-w-[320px]">
               <ProductCard product={prod} />
             </div>
           ))}

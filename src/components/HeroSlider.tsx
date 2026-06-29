@@ -75,7 +75,7 @@ export const HeroSlider: React.FC = () => {
   const slide = SLIDES[currentIndex];
 
   return (
-    <section className="col-span-6 relative overflow-hidden rounded-xl group h-[550px] shadow-sm select-none">
+    <section className="col-span-12 lg:col-span-6 md:col-span-8 relative overflow-hidden rounded-xl group h-[380px] md:h-[550px] shadow-sm select-none">
       {/* Background Image */}
       <div
         ref={bgImageRef}
@@ -83,25 +83,25 @@ export const HeroSlider: React.FC = () => {
         style={{ backgroundImage: `url('${slide.imageUrl}')` }}
       />
       {/* Dark Overlay Grid */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-transparent flex flex-col justify-center px-12 text-white">
+      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-transparent flex flex-col justify-center px-6 md:px-12 text-white">
         <div ref={textContainerRef} className="max-w-md flex flex-col">
-          <span className="bg-primary-container text-on-primary-container font-bold px-3 py-1.5 rounded-full text-label-sm w-fit mb-4 uppercase tracking-wider select-none shadow">
+          <span className="bg-primary-container text-on-primary-container font-bold px-3 py-1.5 rounded-full text-label-sm w-fit mb-3 md:mb-4 uppercase tracking-wider select-none shadow">
             {slide.badge}
           </span>
-          <h1 className="font-display-lg text-display-lg max-w-md mb-4 leading-tight font-black">
+          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg max-w-md mb-3 md:mb-4 leading-tight font-black">
             {slide.title}
           </h1>
-          <p className="text-body-lg max-w-sm mb-8 opacity-90 leading-relaxed font-medium">
+          <p className="text-body-md md:text-body-lg max-w-sm mb-6 md:mb-8 opacity-90 leading-relaxed font-medium">
             {slide.subtitle}
           </p>
-          <button className="bg-primary text-on-primary font-bold py-4 px-10 rounded-xl w-fit transition-all hover:bg-on-primary-fixed-variant active:scale-95 shadow-xl hover:shadow-primary/20">
+          <button className="bg-primary text-on-primary font-bold py-3 px-8 md:py-4 md:px-10 rounded-xl w-fit transition-all hover:bg-on-primary-fixed-variant active:scale-95 shadow-xl hover:shadow-primary/20">
             {slide.ctaText}
           </button>
         </div>
       </div>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-6 left-12 flex gap-3 z-10">
+      <div className="absolute bottom-4 left-6 md:bottom-6 md:left-12 flex gap-3 z-10">
         {SLIDES.map((_, index) => (
           <button
             key={index}

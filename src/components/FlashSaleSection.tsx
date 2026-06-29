@@ -53,9 +53,9 @@ export const FlashSaleSection: React.FC = () => {
   const getSecs = () => (timeLeft % 60).toString().padStart(2, "0");
 
   return (
-    <section className="bg-primary py-16 text-white overflow-hidden select-none">
-      <div className="max-w-[1440px] mx-auto px-margin-desktop">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+    <section className="bg-primary py-12 md:py-16 text-white overflow-hidden select-none">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Title & Countdown Info */}
           <div className="lg:w-1/3 flex flex-col justify-center text-center lg:text-left">
             <span className="bg-white/10 text-primary-fixed border border-white/20 px-3.5 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-widest w-fit mx-auto lg:mx-0 mb-4">
@@ -65,7 +65,7 @@ export const FlashSaleSection: React.FC = () => {
               Midnight Flash Sale!
             </h2>
             <p className="text-body-lg opacity-80 mb-8 leading-relaxed font-medium">
-              Up to 70% off on selected items. Don't miss out, when they're gone, they're gone.
+              {"Up to 70% off on selected items. Don't miss out, when they're gone, they're gone."}
             </p>
             {/* Live countdown visual boxes */}
             <div className="flex justify-center lg:justify-start gap-4 font-mono font-black text-on-surface">
@@ -99,7 +99,7 @@ export const FlashSaleSection: React.FC = () => {
           {/* Cards Carousel */}
           <div className="lg:w-2/3 flex gap-gutter overflow-x-auto hide-scrollbar py-4 scroll-smooth">
             {FLASH_PRODUCTS.map((prod) => (
-              <div key={prod.id} className="min-w-[280px]">
+              <div key={prod.id} className="min-w-[280px] sm:min-w-[320px]">
                 <ProductCard product={prod} />
               </div>
             ))}

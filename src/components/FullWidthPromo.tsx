@@ -4,8 +4,8 @@ import React from "react";
 
 export const FullWidthPromo: React.FC = () => {
   return (
-    <section className="max-w-[1440px] mx-auto px-margin-desktop mb-section-desktop select-none">
-      <div className="relative h-[450px] rounded-[32px] overflow-hidden group shadow-md border border-surface-container/20">
+    <section className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mb-section-mobile md:mb-section-desktop select-none">
+      <div className="relative h-[320px] md:h-[450px] rounded-[24px] md:rounded-[32px] overflow-hidden group shadow-md border border-surface-container/20">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"

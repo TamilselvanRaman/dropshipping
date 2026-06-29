@@ -4,7 +4,7 @@ import React from "react";
 
 export const PromoBanners: React.FC = () => {
   return (
-    <section className="col-span-3 flex flex-col gap-4 h-[550px]">
+    <section className="col-span-12 lg:col-span-3 md:col-span-4 hidden md:flex md:flex-col gap-4 h-[300px] md:h-[550px]">
       {/* Smart Watches Banner */}
       <div className="h-1/2 rounded-xl overflow-hidden relative group shadow-sm">
         <div

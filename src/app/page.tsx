@@ -28,8 +28,8 @@ export default function Home() {
       <Header />
 
       {/* Hero layout grid */}
-      <main className="max-w-[1440px] w-full mx-auto px-margin-desktop mt-8 flex-grow">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter h-[550px] mb-12">
+      <main className="max-w-[1440px] w-full mx-auto px-margin-mobile md:px-margin-desktop mt-4 md:mt-8 flex-grow">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter h-auto md:h-[550px] mb-8 md:mb-12">
           {/* Left departments list */}
           <CategorySidebar />
 

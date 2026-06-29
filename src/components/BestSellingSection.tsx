@@ -55,12 +55,12 @@ const BEST_SELLING_PRODUCTS: Product[] = [
 
 export const BestSellingSection: React.FC = () => {
   return (
-    <section className="py-section-desktop">
-      <div className="max-w-[1440px] mx-auto px-margin-desktop">
-        <h2 className="font-headline-md text-headline-md font-extrabold text-on-surface mb-8">
+    <section className="py-section-mobile md:py-section-desktop">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+        <h2 className="font-headline-md text-headline-md font-extrabold text-on-surface mb-6 md:mb-8">
           Best Selling Products
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-gutter">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-gutter">
           {BEST_SELLING_PRODUCTS.map((prod) => (
             <ProductCard key={prod.id} product={prod} />
           ))}

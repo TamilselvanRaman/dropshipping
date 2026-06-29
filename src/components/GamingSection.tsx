@@ -36,10 +36,10 @@ const GAMING_PRODUCTS: Product[] = [
 
 export const GamingSection: React.FC = () => {
   return (
-    <section className="py-12 bg-surface-container-low select-none">
-      <div className="max-w-[1440px] mx-auto px-margin-desktop">
+    <section className="py-8 md:py-12 bg-surface-container-low select-none">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
         {/* Title */}
-        <div className="flex items-center gap-4 mb-10">
+        <div className="flex items-center gap-4 mb-8 md:mb-10">
           <div className="w-2.5 h-10 bg-primary rounded-full" />
           <h2 className="font-headline-md text-headline-md font-extrabold text-on-surface">
             Gaming &amp; Electronics
@@ -49,7 +49,7 @@ export const GamingSection: React.FC = () => {
         {/* Content Layout */}
         <div className="flex flex-col lg:flex-row gap-gutter">
           {/* Left Rig Banner */}
-          <div className="lg:w-1/4 rounded-2xl overflow-hidden relative h-[420px] shadow-sm group border border-surface-container/20">
+          <div className="w-full lg:w-1/4 rounded-2xl overflow-hidden relative h-[300px] lg:h-auto shadow-sm group border border-surface-container/20">
             {/* Background Image */}
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
@@ -76,7 +76,7 @@ export const GamingSection: React.FC = () => {
           </div>
 
           {/* Right Product Grid */}
-          <div className="lg:w-3/4 grid grid-cols-1 sm:grid-cols-3 gap-gutter">
+          <div className="w-full lg:w-3/4 grid grid-cols-1 sm:grid-cols-3 gap-gutter">
             {GAMING_PRODUCTS.map((prod) => (
               <ProductCard key={prod.id} product={prod} />
             ))}

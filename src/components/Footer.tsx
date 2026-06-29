@@ -1,22 +1,22 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-surface-container-highest text-on-surface-variant select-none border-t border-surface-container/50">
-      <div className="max-w-[1440px] mx-auto px-margin-desktop py-section-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-section-desktop grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-gutter">
         {/* Brand Info */}
         <div className="flex flex-col gap-6">
-          <a
+          <Link
             className="font-display-lg text-display-lg-mobile md:text-headline-md font-black text-primary hover:opacity-90 active:scale-95 transition-all w-fit"
             href="/"
           >
             TOKOO
-          </a>
+          </Link>
           <p className="text-body-md leading-relaxed font-medium">
-            Premium marketplace for the next generation. We bring you the world's most innovative products with a
-            seamless shopping experience.
+            {"Premium marketplace for the next generation. We bring you the world's most innovative products with a seamless shopping experience."}
           </p>
           {/* Social Icons */}
           <div className="flex gap-4">
@@ -118,7 +118,7 @@ export const Footer: React.FC = () => {
             </li>
             <li>
               <a className="hover:text-primary transition-colors" href="#">
-                Careers (We're hiring!)
+                Careers (We&apos;re hiring!)
               </a>
             </li>
             <li>

@@ -16,7 +16,7 @@ export const Newsletter: React.FC = () => {
   };
 
   return (
-    <section className="bg-surface-container-highest py-20 select-none">
+    <section className="bg-surface-container-highest py-12 md:py-20 select-none">
       <div className="max-w-[800px] mx-auto px-margin-mobile text-center">
         {/* Mail Icon Wrapper */}
         <div className="mb-10 inline-flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full text-primary border border-primary/15 shadow-inner">
@@ -38,7 +38,7 @@ export const Newsletter: React.FC = () => {
         {isSubscribed ? (
           <div className="bg-primary/10 border border-primary/30 p-6 rounded-2xl max-w-md mx-auto text-primary font-bold flex items-center justify-center gap-3 animate-fade-in">
             <span className="material-symbols-outlined">check_circle</span>
-            Thank you! You've subscribed successfully.
+            Thank you! You&apos;ve subscribed successfully.
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">

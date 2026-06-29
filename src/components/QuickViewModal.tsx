@@ -40,7 +40,7 @@ export const QuickViewModal: React.FC = () => {
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: "spring", duration: 0.4 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-3xl w-full max-w-3xl overflow-hidden shadow-2xl relative flex flex-col md:flex-row max-h-[90vh] md:max-h-none"
+              className="bg-white rounded-3xl w-full max-w-3xl overflow-y-auto md:overflow-visible shadow-2xl relative flex flex-col md:flex-row max-h-[90vh]"
             >
               {/* Close Button */}
               <button
@@ -51,7 +51,7 @@ export const QuickViewModal: React.FC = () => {
               </button>
 
               {/* Product Image Section */}
-              <div className="md:w-1/2 bg-surface-container-low flex items-center justify-center p-8 relative min-h-[300px] md:min-h-0 border-r border-surface-container/50">
+              <div className="md:w-1/2 bg-surface-container-low flex items-center justify-center p-6 md:p-8 relative min-h-[220px] md:min-h-0 border-r border-surface-container/50">
                 {quickViewProduct.badge && (
                   <span className="absolute top-4 left-4 bg-error text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
                     {quickViewProduct.badge}
