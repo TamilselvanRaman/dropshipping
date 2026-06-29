@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #016e1c;
+  --color-on-secondary-container: #636262;
+  --color-inverse-surface: #2e3132;
+  --color-on-primary-fixed-variant: #005312;
+  --color-outline: #6f7a6b;
+  --color-on-surface-variant: #3f4a3d;
+  --color-on-surface: #191c1d;
+  --color-inverse-on-surface: #f0f1f2;
+  --color-on-primary-container: #00450e;
+  --color-on-secondary-fixed: #1b1c1c;
+  --color-secondary-fixed-dim: #c8c6c5;
+  --color-on-tertiary-fixed: #141e17;
+  --color-error: #ba1a1a;
+  --color-tertiary-fixed: #dae6da;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary: #ffffff;
+  --color-surface-bright: #f8f9fa;
+  --color-surface-container: #edeeef;
+  --color-primary-fixed-dim: #7edb7b;
+  --color-surface-container-highest: #e1e3e4;
+  --color-primary-fixed: #99f894;
+  --color-primary-container: #5cb85c;
+  --color-on-error-container: #93000a;
+  --color-secondary-fixed: #e5e2e1;
+  --color-secondary: #5f5e5e;
+  --color-on-secondary: #ffffff;
+  --color-tertiary-fixed-dim: #becabe;
+  --color-surface-tint: #016e1c;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-inverse-primary: #7edb7b;
+  --color-secondary-container: #e2dfde;
+  --color-surface-dim: #d9dadb;
+  --color-surface: #f8f9fa;
+  --color-on-secondary-fixed-variant: #474746;
+  --color-on-background: #191c1d;
+  --color-tertiary: #566158;
+  --color-on-tertiary: #ffffff;
+  --color-surface-variant: #e1e3e4;
+  --color-on-tertiary-fixed-variant: #3e4941;
+  --color-on-primary-fixed: #002204;
+  --color-tertiary-container: #9ca89d;
+  --color-outline-variant: #bfcab9;
+  --color-surface-container-low: #f3f4f5;
+  --color-on-tertiary-container: #333d35;
+  --color-background: #f8f9fa;
+
+  /* Custom Border Radius */
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Custom Spacing */
+  --spacing-margin-desktop: 64px;
+  --spacing-margin-mobile: 16px;
+  --spacing-gutter: 24px;
+  --spacing-base: 8px;
+  --spacing-section-mobile: 48px;
+  --spacing-section-desktop: 80px;
+
+  /* Custom Font Families */
+  --font-display-lg: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-headline-sm: "Inter", sans-serif;
+  --font-display-lg-mobile: "Inter", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-headline-md: "Inter", sans-serif;
+  --font-label-md: "Inter", sans-serif;
+  --font-label-sm: "Inter", sans-serif;
+
+  /* Custom Font Sizes with Line Heights & Letter Spacing */
+  --size-display-lg: 48px;
+  --size-display-lg-mobile: 32px;
+  --size-headline-md: 24px;
+  --size-headline-sm: 20px;
+  --size-body-lg: 18px;
+  --size-body-md: 16px;
+  --size-label-md: 14px;
+  --size-label-sm: 12px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Custom Utilities and Material Symbols configuration */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.product-card-shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.product-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.glass-effect {
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Smooth transitions */
+.transition-all-custom {
+  transition: all 0.3s ease;
 }

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temp and zip files
+/extracted_temp
+/stitch_modern_tokoo_shopify_marketplace.zip
