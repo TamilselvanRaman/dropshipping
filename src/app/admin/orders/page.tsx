@@ -1,6 +1,18 @@
 "use client";
 
 import React, { useState } from "react";
+import {
+  Clock,
+  Truck,
+  CreditCard,
+  CheckCircle,
+  Filter,
+  Download,
+  MoreVertical,
+  ChevronLeft,
+  ChevronRight,
+  CheckCircle2,
+} from "lucide-react";
 
 interface Order {
   id: string;
@@ -126,58 +138,58 @@ export default function ManageOrders() {
   const filteredOrders = getFilteredOrders();
 
   return (
-    <div className="p-4 max-w-[1440px] mx-auto space-y-6 relative">
+    <div className="space-y-6">
       {/* Stats Quick Look Bento Grid */}
       <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 hover:-translate-y-1 transition-all duration-300">
+        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
           <div className="flex justify-between items-start mb-4">
-            <div className="p-2 bg-primary/10 text-primary rounded-xl">
-              <span className="material-symbols-outlined text-[20px]">pending_actions</span>
+            <div className="p-2.5 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">
+              <Clock className="w-5 h-5" />
             </div>
-            <span className="text-xs font-bold text-primary">+12%</span>
+            <span className="text-xs font-bold text-emerald-700">+12%</span>
           </div>
-          <p className="text-on-surface-variant font-label-md">Pending Orders</p>
-          <h3 className="font-display-lg text-headline-md mt-1">{pendingCount}</h3>
+          <p className="text-slate-500 text-sm font-semibold">Pending Orders</p>
+          <h3 className="font-bold text-2xl text-slate-900 mt-1">{pendingCount}</h3>
         </div>
 
-        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 hover:-translate-y-1 transition-all duration-300">
+        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
           <div className="flex justify-between items-start mb-4">
-            <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-xl text-blue-600 dark:text-blue-400">
-              <span className="material-symbols-outlined text-[20px]">local_shipping</span>
+            <div className="p-2.5 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">
+              <Truck className="w-5 h-5" />
             </div>
-            <span className="text-xs font-bold text-blue-600 dark:text-blue-400">+8%</span>
+            <span className="text-xs font-bold text-emerald-700">+8%</span>
           </div>
-          <p className="text-on-surface-variant font-label-md">In Transit</p>
-          <h3 className="font-display-lg text-headline-md mt-1">{transitCount}</h3>
+          <p className="text-slate-500 text-sm font-semibold">In Transit</p>
+          <h3 className="font-bold text-2xl text-slate-900 mt-1">{transitCount}</h3>
         </div>
 
-        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 hover:-translate-y-1 transition-all duration-300">
+        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
           <div className="flex justify-between items-start mb-4">
-            <div className="p-2 bg-tertiary-container/15 text-tertiary rounded-xl">
-              <span className="material-symbols-outlined text-[20px]">payments</span>
+            <div className="p-2.5 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">
+              <CreditCard className="w-5 h-5" />
             </div>
-            <span className="text-xs font-bold text-tertiary">-$420</span>
+            <span className="text-xs font-bold text-emerald-700">-$420</span>
           </div>
-          <p className="text-on-surface-variant font-label-md">Refunded</p>
-          <h3 className="font-display-lg text-headline-md mt-1">{refundedCount}</h3>
+          <p className="text-slate-500 text-sm font-semibold">Refunded</p>
+          <h3 className="font-bold text-2xl text-slate-900 mt-1">{refundedCount}</h3>
         </div>
 
-        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 hover:-translate-y-1 transition-all duration-300">
+        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
           <div className="flex justify-between items-start mb-4">
-            <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-xl text-green-700 dark:text-green-400">
-              <span className="material-symbols-outlined text-[20px]">task_alt</span>
+            <div className="p-2.5 bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">
+              <CheckCircle className="w-5 h-5" />
             </div>
-            <span className="text-xs font-bold text-green-700 dark:text-green-400">99.2%</span>
+            <span className="text-xs font-bold text-emerald-700">99.2%</span>
           </div>
-          <p className="text-on-surface-variant font-label-md">Completion Rate</p>
-          <h3 className="font-display-lg text-headline-md mt-1">{completionRate}</h3>
+          <p className="text-slate-500 text-sm font-semibold">Completion Rate</p>
+          <h3 className="font-bold text-2xl text-slate-900 mt-1">{completionRate}</h3>
         </div>
       </section>
 
       {/* Table Section Container */}
-      <section className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 overflow-hidden">
+      <section className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
         {/* Order Filters & Tabs */}
-        <div className="px-6 py-4 border-b border-outline-variant/30 bg-surface-container-low/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="px-6 py-4 border-b border-slate-200 bg-slate-50/50 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-1 overflow-x-auto hide-scrollbar">
             {tabs.map((tab) => {
               const isSelected = activeTab === tab;
@@ -185,10 +197,10 @@ export default function ManageOrders() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-5 py-2 text-label-md rounded-xl transition-all duration-300 font-medium whitespace-nowrap cursor-pointer ${
+                  className={`px-4 py-2 text-sm rounded-lg transition-all font-semibold whitespace-nowrap cursor-pointer ${
                     isSelected
-                      ? "text-primary border-b-2 border-primary bg-primary/5 font-bold"
-                      : "text-on-surface-variant hover:text-primary"
+                      ? "text-emerald-700 bg-emerald-50 border border-emerald-100 font-bold"
+                      : "text-slate-500 hover:text-slate-900"
                   }`}
                 >
                   {tab}
@@ -196,13 +208,13 @@ export default function ManageOrders() {
               );
             })}
           </div>
-          <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-900/50 border border-outline-variant/30 rounded-xl text-label-md font-bold hover:bg-surface-container-high/40 transition-all active:scale-95 cursor-pointer">
-              <span className="material-symbols-outlined text-[16px]">filter_list</span>
+          <div className="flex items-center gap-2">
+            <button className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-250 rounded-lg text-xs font-bold text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer">
+              <Filter className="w-4 h-4 text-slate-400" />
               <span>More Filters</span>
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl text-label-md font-bold shadow-md hover:brightness-110 transition-all active:scale-95 cursor-pointer">
-              <span className="material-symbols-outlined text-[16px]">download</span>
+            <button className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-700 text-white rounded-lg text-xs font-bold hover:bg-emerald-800 transition-colors cursor-pointer">
+              <Download className="w-4 h-4" />
               <span>Export CSV</span>
             </button>
           </div>
@@ -212,119 +224,119 @@ export default function ManageOrders() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-surface-container-low/30 text-on-surface-variant font-label-md text-label-sm uppercase tracking-widest text-[11px] border-b border-outline-variant/20">
-                <th className="px-6 py-4 font-semibold">Order ID</th>
-                <th className="px-6 py-4 font-semibold">Product Details</th>
-                <th className="px-6 py-4 font-semibold">Order Date</th>
-                <th className="px-6 py-4 font-semibold">Customer</th>
-                <th className="px-6 py-4 font-semibold">Payment</th>
-                <th className="px-6 py-4 font-semibold">Shipping</th>
-                <th className="px-6 py-4 text-right font-semibold">Actions</th>
+              <tr className="bg-slate-55 border-b border-slate-200 text-slate-500 font-semibold text-[10px] uppercase tracking-widest">
+                <th className="px-6 py-3.5">Order ID</th>
+                <th className="px-6 py-3.5">Product Details</th>
+                <th className="px-6 py-3.5">Order Date</th>
+                <th className="px-6 py-3.5">Customer</th>
+                <th className="px-6 py-3.5">Payment</th>
+                <th className="px-6 py-3.5">Shipping</th>
+                <th className="px-6 py-3.5 text-right font-semibold">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-outline-variant/20">
+            <tbody className="divide-y divide-slate-100">
               {filteredOrders.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-10 text-center text-on-surface-variant text-label-md">
+                  <td colSpan={7} className="px-6 py-10 text-center text-slate-500 text-sm">
                     No orders found matching the filter.
                   </td>
                 </tr>
               ) : (
                 filteredOrders.map((o) => (
-                  <tr key={o.id} className="hover:bg-surface-container/20 transition-colors group">
+                  <tr key={o.id} className="hover:bg-slate-50/40 transition-colors group">
                     <td className="px-6 py-4">
-                      <span className="font-mono text-label-md font-bold text-on-surface">{o.id}</span>
+                      <span className="font-mono text-sm font-bold text-slate-800">{o.id}</span>
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl overflow-hidden bg-surface-container border border-outline-variant/30 shrink-0">
+                        <div className="w-10 h-10 rounded overflow-hidden bg-slate-100 border border-slate-200 shrink-0">
                           <img
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                             alt={o.productName}
                             src={o.image}
                           />
                         </div>
                         <div>
-                          <p className="font-label-md text-on-surface font-semibold max-w-[180px] truncate leading-tight">
+                          <p className="text-sm font-bold text-slate-800 max-w-[180px] truncate leading-tight">
                             {o.productName}
                           </p>
-                          <p className="text-[10px] text-on-surface-variant uppercase font-bold mt-1 font-mono opacity-80">
+                          <p className="text-[10px] text-slate-500 font-bold mt-1 font-mono uppercase">
                             Qty: {o.qty} • {o.variant}
                           </p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <p className="text-label-md text-on-surface leading-tight">{o.date}</p>
-                      <p className="text-[10px] text-on-surface-variant mt-1 font-medium opacity-80">{o.time}</p>
+                      <p className="text-sm text-slate-800 leading-tight">{o.date}</p>
+                      <p className="text-[11px] text-slate-500 mt-1">{o.time}</p>
                     </td>
                     <td className="px-6 py-4">
-                      <p className="text-label-md font-semibold text-on-surface">{o.customerName}</p>
-                      <p className="text-[10px] text-on-surface-variant mt-1 font-medium opacity-80">
+                      <p className="text-sm font-bold text-slate-800">{o.customerName}</p>
+                      <p className="text-[11px] text-slate-500 mt-1">
                         {o.customerCity}, {o.customerState}
                       </p>
                     </td>
                     <td className="px-6 py-4">
                       {o.paymentStatus === "Paid" && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wide border border-green-200">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wide border border-green-200">
                           <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                           Paid
                         </span>
                       )}
                       {o.paymentStatus === "COD Pending" && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-wide border border-amber-200">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-wide border border-amber-200">
                           <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
                           COD Pending
                         </span>
                       )}
                       {o.paymentStatus === "Cancelled" && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container text-error text-[10px] font-bold uppercase tracking-wide border border-error-container">
-                          <span className="w-1.5 h-1.5 rounded-full bg-error"></span>
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-100 text-red-700 text-[10px] font-bold uppercase tracking-wide border border-red-200">
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>
                           Cancelled
                         </span>
                       )}
                     </td>
                     <td className="px-6 py-4">
                       {o.shippingStatus === "Shipped" && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wide border border-blue-200">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase tracking-wide border border-blue-200">
                           <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                           Shipped
                         </span>
                       )}
                       {o.shippingStatus === "Pending" && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant text-[10px] font-bold uppercase tracking-wide border border-outline-variant/30">
-                          <span className="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold uppercase tracking-wide border border-slate-200">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
                           Pending
                         </span>
                       )}
                       {o.shippingStatus === "Delivered" && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wide border border-green-200">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wide border border-green-200">
                           <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
                           Delivered
                         </span>
                       )}
                       {o.shippingStatus === "N/A" && (
-                        <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant/60 text-[10px] font-bold uppercase tracking-wide border border-outline-variant/10">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-400 text-[10px] font-bold uppercase tracking-wide border border-slate-200">
                           N/A
                         </span>
                       )}
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
+                      <div className="flex items-center justify-end gap-1">
                         {o.shippingStatus === "Pending" && o.paymentStatus !== "Cancelled" ? (
                           <button
                             onClick={() => handleMarkShipped(o.id)}
-                            className="px-3 py-1.5 text-label-sm font-bold text-primary bg-primary/10 rounded-md hover:bg-primary/20 transition-colors active:scale-95 cursor-pointer"
+                            className="px-2.5 py-1 text-xs font-bold text-white bg-emerald-700 rounded hover:bg-emerald-800 active:scale-95 transition-all cursor-pointer"
                           >
                             Mark Shipped
                           </button>
                         ) : (
-                          <button className="px-3 py-1.5 text-label-sm font-bold text-primary border border-primary/20 rounded-md hover:bg-primary/5 transition-colors active:scale-95 cursor-pointer">
+                          <button className="px-2.5 py-1 text-xs font-bold text-emerald-700 border border-slate-200 bg-white rounded hover:bg-slate-50 transition-all active:scale-95 cursor-pointer">
                             Details
                           </button>
                         )}
-                        <button className="material-symbols-outlined text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 p-1.5 rounded-lg transition-colors active:scale-95 cursor-pointer">
-                          more_vert
+                        <button className="p-1 text-slate-400 hover:text-slate-800 rounded-md transition-colors active:scale-95 cursor-pointer">
+                          <MoreVertical className="w-4 h-4" />
                         </button>
                       </div>
                     </td>
@@ -336,19 +348,19 @@ export default function ManageOrders() {
         </div>
 
         {/* Table Footer Pagination */}
-        <div className="px-6 py-4 bg-surface-container-lowest/30 border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-label-md text-on-surface-variant font-medium font-sans">Showing 1 to {filteredOrders.length} of 2,402 entries</p>
+        <div className="px-6 py-4 bg-slate-50/50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs font-semibold text-slate-500">Showing 1 to {filteredOrders.length} of 2,402 entries</p>
           <div className="flex items-center gap-1">
-            <button className="p-2 rounded-lg border border-outline-variant/40 bg-white/40 dark:bg-slate-900/40 hover:bg-surface-container-high/40 transition-colors disabled:opacity-30 cursor-not-allowed" disabled>
-              <span className="material-symbols-outlined">chevron_left</span>
+            <button className="p-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-55 transition-colors disabled:opacity-30 cursor-not-allowed" disabled>
+              <ChevronLeft className="w-4 h-4" />
             </button>
-            <button className="px-3 py-1 rounded bg-primary text-on-primary font-bold text-label-md">1</button>
-            <button className="px-3 py-1 rounded hover:bg-surface-container-high/40 transition-colors text-label-md cursor-pointer">2</button>
-            <button className="px-3 py-1 rounded hover:bg-surface-container-high/40 transition-colors text-label-md cursor-pointer">3</button>
-            <span className="px-2">...</span>
-            <button className="px-3 py-1 rounded hover:bg-surface-container-high/40 transition-colors text-label-md cursor-pointer">240</button>
-            <button className="p-2 rounded hover:bg-surface-container-high/40 transition-colors cursor-pointer">
-              <span className="material-symbols-outlined">chevron_right</span>
+            <button className="w-8 h-8 bg-emerald-700 text-white rounded-lg text-xs font-bold">1</button>
+            <button className="w-8 h-8 hover:bg-slate-100 rounded-lg text-xs font-medium transition-colors cursor-pointer">2</button>
+            <button className="w-8 h-8 hover:bg-slate-100 rounded-lg text-xs font-medium transition-colors cursor-pointer">3</button>
+            <span className="px-1 text-slate-400">...</span>
+            <button className="w-8 h-8 hover:bg-slate-100 rounded-lg text-xs font-medium transition-colors cursor-pointer">240</button>
+            <button className="p-1.5 border border-slate-200 bg-white rounded-lg hover:bg-slate-55 transition-colors cursor-pointer">
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -356,9 +368,9 @@ export default function ManageOrders() {
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-10 right-10 flex items-center gap-3 bg-on-surface text-surface py-3.5 px-6 rounded-xl shadow-2xl z-[100] transition-all duration-300 animate-bounce">
-          <span className="material-symbols-outlined text-primary-fixed text-xl">check_circle</span>
-          <span className="text-label-md font-semibold">{toastMessage}</span>
+        <div className="fixed bottom-6 right-6 flex items-center gap-2 bg-slate-900 text-white py-3 px-5 rounded-lg shadow-xl z-[100] transition-all duration-300">
+          <CheckCircle2 className="w-4.5 h-4.5 text-emerald-500" />
+          <span className="text-sm font-semibold">{toastMessage}</span>
         </div>
       )}
     </div>

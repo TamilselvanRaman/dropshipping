@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { Mail, Lock, AlertTriangle, ArrowLeft } from "lucide-react";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -46,48 +47,42 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col justify-center items-center px-4 py-12 relative overflow-hidden">
-      {/* Dynamic Background Accents */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-container/5 rounded-full blur-3xl pointer-events-none"></div>
-
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center items-center px-4 py-12 relative overflow-hidden font-sans">
       {/* Login Card Container */}
-      <div className="w-full max-w-md bg-surface-container-lowest p-8 rounded-3xl border border-outline-variant/30 shadow-2xl relative z-10">
+      <div className="w-full max-w-md bg-white p-8 rounded-2xl border border-slate-200 shadow-lg relative z-10">
         {/* Logo and Titles */}
         <div className="text-center mb-8">
-          <span className="font-display-lg text-headline-md font-black text-primary flex items-center justify-center gap-2">
+          <span className="text-2xl font-black text-emerald-700 flex items-center justify-center gap-2">
             Dropship India
           </span>
-          <p className="text-label-md text-on-surface-variant mt-2 font-medium">
-            Premium Merchant Console Administrator Login
+          <p className="text-xs font-semibold text-slate-500 mt-2 uppercase tracking-wide">
+            Premium Merchant Console Admin Login
           </p>
         </div>
 
         {/* Error Alert Box */}
         {error && (
-          <div className="mb-6 p-4 bg-error-container/30 border border-error-container/50 rounded-xl text-error text-label-md font-semibold flex items-center gap-2">
-            <span className="material-symbols-outlined shrink-0 text-[20px]">warning</span>
+          <div className="mb-6 p-3.5 bg-red-50 border border-red-150 rounded-xl text-red-750 text-xs font-semibold flex items-center gap-2 text-red-750">
+            <AlertTriangle className="shrink-0 text-red-500 w-4 h-4" />
             <span>{error}</span>
           </div>
         )}
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-label-md font-bold text-on-surface mb-1.5" htmlFor="email-input">
+            <label className="block text-xs font-bold text-slate-700 mb-1.5" htmlFor="email-input">
               Email Address
             </label>
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">
-                mail
-              </span>
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
               <input
                 id="email-input"
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl pl-11 pr-4 py-3.5 text-body-md focus:ring-2 focus:ring-primary/20 outline-none text-on-surface"
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-emerald-700/20 focus:bg-white outline-none text-slate-800"
                 placeholder="admin@dropship.in"
               />
             </div>
@@ -95,24 +90,22 @@ export default function AdminLogin() {
 
           <div>
             <div className="flex justify-between items-center mb-1.5">
-              <label className="block text-label-md font-bold text-on-surface" htmlFor="password-input">
+              <label className="block text-xs font-bold text-slate-700" htmlFor="password-input">
                 Password
               </label>
-              <a href="#" className="text-xs text-primary hover:underline font-bold">
+              <a href="#" className="text-xs text-emerald-700 hover:text-emerald-800 hover:underline font-bold">
                 Forgot password?
               </a>
             </div>
             <div className="relative">
-              <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">
-                lock
-              </span>
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
               <input
                 id="password-input"
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl pl-11 pr-4 py-3.5 text-body-md focus:ring-2 focus:ring-primary/20 outline-none text-on-surface"
+                className="w-full bg-slate-50 border border-slate-200 rounded-lg pl-9 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-emerald-700/20 focus:bg-white outline-none text-slate-800"
                 placeholder="••••••••"
               />
             </div>
@@ -123,9 +116,9 @@ export default function AdminLogin() {
               id="remember-me"
               type="checkbox"
               defaultChecked
-              className="h-4.5 w-4.5 text-primary border-outline-variant/50 rounded focus:ring-primary/20 cursor-pointer"
+              className="h-4 w-4 text-emerald-600 border-slate-300 rounded focus:ring-emerald-500 cursor-pointer"
             />
-            <label htmlFor="remember-me" className="ml-2 text-label-sm text-on-surface-variant font-medium cursor-pointer select-none">
+            <label htmlFor="remember-me" className="ml-2 text-xs text-slate-500 font-semibold cursor-pointer select-none">
               Remember my session
             </label>
           </div>
@@ -133,14 +126,14 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-4 bg-primary text-on-primary rounded-xl font-bold flex items-center justify-center gap-2 hover:brightness-110 shadow-lg active:scale-98 transition-all ${
+            className={`w-full py-3 bg-emerald-700 text-white rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-emerald-800 shadow-sm active:scale-98 transition-all ${
               loading ? "cursor-not-allowed opacity-75" : "cursor-pointer"
             }`}
           >
             {loading ? (
               <>
                 <svg
-                  className="animate-spin h-5 w-5 text-on-primary"
+                  className="animate-spin h-4 w-4 text-white"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -161,17 +154,17 @@ export default function AdminLogin() {
         </form>
 
         {/* Credentials hints */}
-        <div className="mt-8 pt-6 border-t border-outline-variant/30 text-center">
-          <p className="text-[12px] text-on-surface-variant">
-            Testing Credentials: <span className="font-bold text-on-surface">admin@dropship.in</span> /{" "}
-            <span className="font-bold text-on-surface">admin123</span>
+        <div className="mt-8 pt-4 border-t border-slate-100 text-center">
+          <p className="text-[11px] text-slate-500">
+            Testing Credentials: <span className="font-bold text-slate-700">admin@dropship.in</span> /{" "}
+            <span className="font-bold text-slate-700">admin123</span>
           </p>
         </div>
       </div>
 
       {/* Back to Storefront Link */}
-      <a href="/" className="mt-8 text-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1.5 font-bold">
-        <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+      <a href="/" className="mt-6 text-xs text-slate-500 hover:text-emerald-700 transition-colors flex items-center gap-1 font-bold">
+        <ArrowLeft className="w-3.5 h-3.5" />
         Return to Shopify Storefront
       </a>
     </div>

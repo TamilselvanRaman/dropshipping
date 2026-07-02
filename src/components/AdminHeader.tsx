@@ -2,6 +2,7 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
+import { Search, Bell, Settings, HelpCircle } from "lucide-react";
 
 export default function AdminHeader() {
   const pathname = usePathname();
@@ -17,48 +18,44 @@ export default function AdminHeader() {
   };
 
   return (
-    <header className="sticky top-4 z-40 mx-4 mb-6 px-6 py-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border border-white/20 dark:border-slate-800/50 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex items-center justify-between transition-all duration-300">
+    <header className="h-16 px-6 bg-white border-b border-slate-200 flex items-center justify-between transition-all duration-300">
       {/* Dynamic Title */}
       <div className="flex items-center gap-4">
-        <h1 className="text-headline-sm font-black text-primary leading-none tracking-tight">
+        <h1 className="text-lg font-bold text-slate-900 leading-none tracking-tight">
           {getTitle()}
         </h1>
       </div>
 
       {/* Utilities */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-4">
         {/* Search Bar */}
-        <div className="relative hidden lg:block min-w-[320px]">
-          <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] select-none">
-            search
-          </span>
+        <div className="relative hidden lg:block min-w-[280px]">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 select-none" />
           <input
-            className="w-full bg-surface-container-low border border-outline-variant/20 rounded-full py-2.5 pl-10 pr-4 text-label-md focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none"
+            className="w-full bg-slate-50 border border-slate-200 rounded-lg py-2 pl-9 pr-4 text-sm focus:ring-2 focus:ring-emerald-700/20 focus:bg-white transition-all outline-none text-slate-800"
             placeholder="Search orders, products, analytics..."
             type="text"
           />
         </div>
 
         {/* Action Icons */}
-        <div className="flex items-center gap-4 text-on-secondary-container">
-          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high/40 active:scale-95 cursor-pointer relative">
-            <span className="material-symbols-outlined text-[20px]">
-              notifications
-            </span>
+        <div className="flex items-center gap-3">
+          <button className="text-slate-500 hover:text-emerald-700 hover:bg-slate-100 p-2 rounded-lg transition-all cursor-pointer relative">
+            <Bell className="w-5 h-5" />
             {/* Notification Dot */}
-            <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-white"></span>
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white"></span>
           </button>
-          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high/40 active:scale-95 cursor-pointer">
-            <span className="material-symbols-outlined text-[20px]">settings</span>
+          <button className="text-slate-500 hover:text-emerald-700 hover:bg-slate-100 p-2 rounded-lg transition-all cursor-pointer">
+            <Settings className="w-5 h-5" />
           </button>
-          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high/40 active:scale-95 cursor-pointer">
-            <span className="material-symbols-outlined text-[20px]">help</span>
+          <button className="text-slate-500 hover:text-emerald-700 hover:bg-slate-100 p-2 rounded-lg transition-all cursor-pointer">
+            <HelpCircle className="w-5 h-5" />
           </button>
 
-          <div className="h-px bg-outline-variant/30 w-4 rotate-90 hidden sm:block"></div>
+          <div className="h-4 bg-slate-200 w-px mx-1 hidden sm:block"></div>
 
           {/* Profile Avatar */}
-          <div className="h-9 w-9 rounded-full overflow-hidden border-2 border-primary/25 bg-surface-container-high cursor-pointer transition-all hover:scale-105 hover:border-primary active:scale-95 shadow-sm">
+          <div className="h-8 w-8 rounded-full overflow-hidden border border-slate-200 bg-slate-100 cursor-pointer transition-all hover:scale-105 hover:border-emerald-700 shadow-sm">
             <img
               className="w-full h-full object-cover"
               alt="Administrator Profile"
