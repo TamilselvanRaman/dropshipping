@@ -63,10 +63,10 @@ export default function ManageProducts() {
     },
   ]);
 
-  // Derived Stats based on local state updates
+  // Derived Stats
   const totalProductsCount = 2480;
   const lowInventoryCount = 24;
-  const pushedCount = 1902 + products.filter((p) => p.status === "Pushed").length - 2; // offset starting state
+  const pushedCount = 1902 + products.filter((p) => p.status === "Pushed").length - 2;
   const readyToPushCount = 578 - (products.filter((p) => p.status === "Pushed").length - 2);
 
   // Trigger Toast helper
@@ -77,14 +77,12 @@ export default function ManageProducts() {
     }, 4000);
   };
 
-  // Push to shopify operation simulation
+  // Push simulation
   const handlePush = (productId: string) => {
-    // 1. Mark status as Pushing
     setProducts((prev) =>
       prev.map((p) => (p.id === productId ? { ...p, status: "Pushing" } : p))
     );
 
-    // 2. Mock API call
     setTimeout(() => {
       setProducts((prev) =>
         prev.map((p) => {
@@ -113,7 +111,7 @@ export default function ManageProducts() {
       : products.filter((p) => p.category === selectedCategory);
 
   return (
-    <div className="p-gutter max-w-[1440px] mx-auto space-y-8 relative">
+    <div className="p-4 max-w-[1440px] mx-auto space-y-6 relative">
       {/* Category Quick Filters */}
       <section className="flex gap-4 overflow-x-auto pb-2 hide-scrollbar">
         {categories.map((cat) => {
@@ -122,13 +120,13 @@ export default function ManageProducts() {
             <button
               key={cat.value}
               onClick={() => setSelectedCategory(cat.value)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-200 active:scale-95 cursor-pointer shrink-0 ${
+              className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all duration-300 active:scale-95 cursor-pointer shrink-0 ${
                 isSelected
-                  ? "bg-primary text-white shadow-md -translate-y-0.5"
-                  : "bg-surface-container-lowest text-on-surface hover:bg-surface-container-high border border-outline-variant shadow-sm"
+                  ? "bg-gradient-to-r from-primary to-primary-container text-white shadow-md -translate-y-0.5"
+                  : "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-on-surface hover:bg-surface-container-high/40 border border-white/20 dark:border-slate-800/40 shadow-sm"
               }`}
             >
-              <span className={`material-symbols-outlined ${isSelected ? "text-white" : "text-primary"}`}>
+              <span className={`material-symbols-outlined text-[20px] ${isSelected ? "text-white" : "text-primary"}`}>
                 {cat.icon}
               </span>
               <span className="font-label-md text-label-md">{cat.name}</span>
@@ -139,7 +137,7 @@ export default function ManageProducts() {
 
       {/* Stats Overview (Bento Style) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 flex flex-col justify-between hover:shadow-md transition-shadow">
           <div className="flex justify-between items-start">
             <span className="material-symbols-outlined p-3 bg-primary/10 text-primary rounded-xl">
               inventory
@@ -154,7 +152,7 @@ export default function ManageProducts() {
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 flex flex-col justify-between hover:shadow-md transition-shadow">
           <div className="flex justify-between items-start">
             <span className="material-symbols-outlined p-3 bg-error-container/30 text-error rounded-xl">
               warning
@@ -169,9 +167,9 @@ export default function ManageProducts() {
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 flex flex-col justify-between hover:shadow-md transition-shadow">
           <div className="flex justify-between items-start">
-            <span className="material-symbols-outlined p-3 bg-secondary-container text-secondary rounded-xl">
+            <span className="material-symbols-outlined p-3 bg-secondary-container/20 text-secondary rounded-xl">
               cloud_upload
             </span>
           </div>
@@ -183,9 +181,9 @@ export default function ManageProducts() {
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-outline-variant/30 flex flex-col justify-between hover:shadow-md transition-shadow">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 flex flex-col justify-between hover:shadow-md transition-shadow">
           <div className="flex justify-between items-start">
-            <span className="material-symbols-outlined p-3 bg-tertiary-container/20 text-tertiary rounded-xl">
+            <span className="material-symbols-outlined p-3 bg-tertiary-container/15 text-tertiary rounded-xl">
               pending_actions
             </span>
           </div>
@@ -198,9 +196,9 @@ export default function ManageProducts() {
         </div>
       </div>
 
-      {/* Sourcing List Data Table */}
-      <div className="bg-surface-container-lowest rounded-3xl shadow-sm border border-outline-variant/30 overflow-hidden">
-        <div className="px-8 py-6 border-b border-outline-variant/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      {/* Product Sourcing List Table */}
+      <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 overflow-hidden">
+        <div className="px-8 py-6 border-b border-outline-variant/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface-container-lowest/30">
           <div>
             <h3 className="font-headline-sm text-headline-sm text-on-surface">Product Sourcing List</h3>
             <p className="text-label-md text-on-surface-variant mt-0.5">
@@ -208,11 +206,11 @@ export default function ManageProducts() {
             </p>
           </div>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 border border-outline rounded-xl text-label-md font-bold hover:bg-surface-container-high transition-colors active:scale-98">
+            <button className="flex items-center gap-2 px-4 py-2 border border-outline-variant/50 bg-white/50 dark:bg-slate-900/50 rounded-xl text-label-md font-bold hover:bg-surface-container-high/40 transition-colors active:scale-98 cursor-pointer">
               <span className="material-symbols-outlined text-[18px]">filter_list</span>
               Advanced Filters
             </button>
-            <button className="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-xl text-label-md font-bold hover:brightness-110 transition-all shadow-lg active:scale-95">
+            <button className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl text-label-md font-bold hover:brightness-110 transition-all shadow-md active:scale-95 cursor-pointer">
               <span className="material-symbols-outlined text-[18px]">add</span>
               Bulk Source
             </button>
@@ -222,8 +220,8 @@ export default function ManageProducts() {
         {/* Table View */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
-            <thead className="bg-surface-container-low border-b border-outline-variant/30">
-              <tr className="text-on-surface-variant font-label-md text-label-sm">
+            <thead className="bg-surface-container-low/40 border-b border-outline-variant/20">
+              <tr className="text-on-surface-variant font-label-md text-label-sm uppercase tracking-widest text-[11px]">
                 <th className="px-8 py-4">Product Details</th>
                 <th className="px-6 py-4">Our Price</th>
                 <th className="px-6 py-4">Selling Price</th>
@@ -239,12 +237,12 @@ export default function ManageProducts() {
                   <tr key={p.id} className="hover:bg-surface-container/20 transition-colors group">
                     <td className="px-8 py-5">
                       <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-xl bg-surface-container-high overflow-hidden border border-outline-variant shrink-0 transition-transform duration-300 group-hover:scale-105">
+                        <div className="w-16 h-16 rounded-xl bg-surface-container-high overflow-hidden border border-outline-variant/30 shrink-0 transition-transform duration-300 group-hover:scale-105">
                           <img className="w-full h-full object-cover" alt={p.name} src={p.image} />
                         </div>
                         <div>
-                          <h4 className="font-body-md font-bold text-on-surface">{p.name}</h4>
-                          <p className="text-[12px] text-on-surface-variant mt-0.5">
+                          <h4 className="font-body-md font-bold text-on-surface leading-tight">{p.name}</h4>
+                          <p className="text-[12px] text-on-surface-variant mt-1 font-medium opacity-80">
                             SKU: {p.sku} | ID: {p.id}
                           </p>
                         </div>
@@ -252,11 +250,11 @@ export default function ManageProducts() {
                     </td>
                     <td className="px-6 py-5">
                       <p className="font-body-md font-bold text-on-surface">₹{p.ourPrice.toLocaleString()}</p>
-                      <span className="text-[11px] text-on-surface-variant">Excl. Tax</span>
+                      <span className="text-[11px] text-on-surface-variant font-medium opacity-80 mt-0.5 block">Excl. Tax</span>
                     </td>
                     <td className="px-6 py-5">
                       <p className="font-body-md font-bold text-primary">₹{p.sellingPrice.toLocaleString()}</p>
-                      <span className="text-[11px] text-on-primary-container font-bold px-2 py-0.5 bg-primary-container/25 rounded-full mt-0.5 inline-block">
+                      <span className="text-[11px] text-on-primary-container font-bold px-2.5 py-0.5 bg-primary-container/20 rounded-full mt-1.5 inline-block border border-primary-container/10">
                         {p.margin}% Margin
                       </span>
                     </td>
@@ -271,12 +269,12 @@ export default function ManageProducts() {
                           ></div>
                         </div>
                         {isLowStock ? (
-                          <span className="text-label-sm text-error font-bold mt-2 flex items-center gap-1">
+                          <span className="text-label-sm text-error font-bold mt-2.5 flex items-center gap-1">
                             <span className="material-symbols-outlined text-[14px]">warning</span>
                             {p.inventory} left
                           </span>
                         ) : (
-                          <span className="text-label-sm text-on-surface-variant mt-2">
+                          <span className="text-label-sm text-on-surface-variant font-medium mt-2.5">
                             {p.inventory} in stock
                           </span>
                         )}
@@ -290,13 +288,13 @@ export default function ManageProducts() {
                         </span>
                       )}
                       {p.status === "Ready to Push" && (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-on-surface-variant text-label-sm font-bold rounded-full border border-outline-variant/30">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high/40 text-on-surface-variant text-label-sm font-bold rounded-full border border-outline-variant/30">
                           <span className="w-2 h-2 rounded-full bg-outline"></span>
                           Ready to Push
                         </span>
                       )}
                       {p.status === "Pushing" && (
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary-container/30 text-on-secondary-container text-label-sm font-bold rounded-full">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-secondary-container/20 text-on-secondary-container text-label-sm font-bold rounded-full border border-outline-variant/20">
                           <svg
                             className="animate-spin h-3.5 w-3.5 text-primary"
                             xmlns="http://www.w3.org/2000/svg"
@@ -323,7 +321,7 @@ export default function ManageProducts() {
                     </td>
                     <td className="px-8 py-5 text-right">
                       <div className="flex justify-end items-center gap-2">
-                        <button className="p-2 text-on-surface-variant hover:text-primary rounded-lg hover:bg-surface-container-high transition-colors active:scale-95">
+                        <button className="p-2 text-on-surface-variant hover:text-primary rounded-lg hover:bg-surface-container-high/40 transition-colors active:scale-95 cursor-pointer">
                           <span className="material-symbols-outlined text-[20px]">edit</span>
                         </button>
                         {p.status === "Ready to Push" && (
@@ -336,7 +334,7 @@ export default function ManageProducts() {
                           </button>
                         )}
                         {p.status === "Pushed" && (
-                          <button className="flex items-center gap-1.5 px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-xl text-label-sm font-bold border border-outline-variant hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95">
+                          <button className="flex items-center gap-1.5 px-4 py-2 bg-surface-container-highest/60 text-on-surface-variant rounded-xl text-label-sm font-bold border border-outline-variant/30 hover:bg-primary hover:text-white hover:border-primary transition-all active:scale-95 cursor-pointer">
                             <span className="material-symbols-outlined text-[16px]">refresh</span>
                             Update
                           </button>
@@ -360,20 +358,20 @@ export default function ManageProducts() {
         </div>
 
         {/* Pagination Footer */}
-        <div className="px-8 py-5 bg-surface-container-low flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-outline-variant/30">
-          <p className="text-label-md text-on-surface-variant">
+        <div className="px-8 py-5 bg-surface-container-low/30 flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-outline-variant/30">
+          <p className="text-label-md text-on-surface-variant font-medium">
             Showing 1 to {filteredProducts.length} of {totalProductsCount.toLocaleString()} products
           </p>
           <div className="flex gap-2">
-            <button className="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-high transition-colors disabled:opacity-30 cursor-not-allowed" disabled>
+            <button className="p-2 border border-outline-variant/40 bg-white/40 dark:bg-slate-900/40 rounded-lg hover:bg-surface-container-high/40 transition-colors disabled:opacity-30 cursor-not-allowed" disabled>
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
             <button className="w-10 h-10 bg-primary text-white rounded-lg text-label-md font-bold">1</button>
-            <button className="w-10 h-10 hover:bg-surface-container-high rounded-lg text-label-md transition-colors">2</button>
-            <button className="w-10 h-10 hover:bg-surface-container-high rounded-lg text-label-md transition-colors">3</button>
+            <button className="w-10 h-10 hover:bg-surface-container-high/40 rounded-lg text-label-md transition-colors cursor-pointer">2</button>
+            <button className="w-10 h-10 hover:bg-surface-container-high/40 rounded-lg text-label-md transition-colors cursor-pointer">3</button>
             <span className="flex items-center px-2">...</span>
-            <button className="w-10 h-10 hover:bg-surface-container-high rounded-lg text-label-md transition-colors">248</button>
-            <button className="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-high transition-colors">
+            <button className="w-10 h-10 hover:bg-surface-container-high/40 rounded-lg text-label-md transition-colors cursor-pointer">248</button>
+            <button className="p-2 border border-outline-variant/40 bg-white/40 dark:bg-slate-900/40 rounded-lg hover:bg-surface-container-high/40 transition-colors cursor-pointer">
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
           </div>

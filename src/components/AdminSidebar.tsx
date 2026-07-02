@@ -29,48 +29,54 @@ export default function AdminSidebar() {
   };
 
   return (
-    <aside className="fixed left-0 top-0 bottom-0 flex flex-col py-6 h-screen w-64 border-r border-outline-variant bg-surface dark:bg-on-surface z-50 transition-all duration-300">
+    <aside className="fixed left-4 top-4 bottom-4 w-60 bg-white/70 dark:bg-slate-900/80 backdrop-blur-xl border border-white/20 dark:border-slate-800/50 rounded-3xl shadow-[0_12px_40px_rgba(0,0,0,0.03)] z-50 flex flex-col py-6 transition-all duration-300">
       {/* Brand Section */}
-      <div className="px-6 mb-8 flex flex-col gap-1">
-        <span className="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed leading-none">
+      <div className="px-6 mb-8 flex flex-col gap-1.5">
+        <span className="font-headline-sm text-headline-sm font-black text-primary dark:text-primary-fixed leading-none tracking-tight">
           Dropship India
         </span>
-        <span className="text-label-sm text-secondary opacity-70">
-          Premium Merchant Console
+        <span className="text-[11px] text-on-surface-variant font-bold opacity-60 uppercase tracking-wider">
+          Merchant Console
         </span>
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex-1 space-y-1">
+      <nav className="flex-1 space-y-1.5">
         {navItems.map((item) => {
           const active = isActive(item.href);
           return (
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center gap-3 py-3 px-4 mx-2 rounded-lg transition-all duration-200 active:scale-95 ${
+              className={`flex items-center gap-3 py-3 px-4 mx-3 rounded-xl transition-all duration-300 active:scale-95 group ${
                 active
-                  ? "bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary font-bold shadow-sm"
-                  : "text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high font-medium"
+                  ? "bg-gradient-to-r from-primary to-primary-container text-white font-bold shadow-md shadow-primary/10"
+                  : "text-on-surface-variant hover:text-primary hover:bg-surface-container-low/60 font-medium"
               }`}
             >
               <span
-                className="material-symbols-outlined shrink-0"
+                className={`material-symbols-outlined shrink-0 text-[20px] transition-transform duration-300 group-hover:scale-105 ${
+                  active ? "text-white" : "text-primary"
+                }`}
                 style={{ fontVariationSettings: active ? "'FILL' 1" : "'FILL' 0" }}
               >
                 {item.icon}
               </span>
-              <span className="font-body-md text-body-md">{item.name}</span>
+              <span className="font-body-md text-label-md">{item.name}</span>
             </Link>
           );
         })}
       </nav>
 
       {/* Bottom Actions */}
-      <div className="mt-auto border-t border-outline-variant pt-4 mx-2">
-        <button className="w-full flex items-center gap-3 py-3 px-4 rounded-lg text-on-surface-variant dark:text-surface-variant hover:bg-error-container hover:text-on-error-container transition-all duration-200 active:scale-95 text-left">
-          <span className="material-symbols-outlined shrink-0">logout</span>
-          <span className="font-body-md text-body-md font-medium">Logout</span>
+      <div className="mt-auto border-t border-outline-variant/30 pt-4 mx-3">
+        <button className="w-full flex items-center gap-3 py-3 px-4 rounded-xl text-on-surface-variant hover:bg-error-container/20 hover:text-error transition-all duration-200 active:scale-95 text-left cursor-pointer group">
+          <span className="material-symbols-outlined shrink-0 text-[20px] text-error opacity-75 group-hover:opacity-100 transition-opacity">
+            logout
+          </span>
+          <span className="font-body-md text-label-md font-bold text-on-surface-variant group-hover:text-error transition-colors">
+            Logout
+          </span>
         </button>
       </div>
     </aside>

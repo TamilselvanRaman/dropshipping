@@ -17,10 +17,10 @@ export default function AdminHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-40 flex items-center justify-between px-gutter py-4 bg-surface/80 backdrop-blur-md shadow-sm border-b border-outline-variant transition-all duration-300">
+    <header className="sticky top-4 z-40 mx-4 mb-6 px-6 py-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border border-white/20 dark:border-slate-800/50 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex items-center justify-between transition-all duration-300">
       {/* Dynamic Title */}
       <div className="flex items-center gap-4">
-        <h1 className="font-headline-sm text-headline-sm font-extrabold text-primary">
+        <h1 className="text-headline-sm font-black text-primary leading-none tracking-tight">
           {getTitle()}
         </h1>
       </div>
@@ -29,11 +29,11 @@ export default function AdminHeader() {
       <div className="flex items-center gap-6">
         {/* Search Bar */}
         <div className="relative hidden lg:block min-w-[320px]">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant select-none">
+          <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px] select-none">
             search
           </span>
           <input
-            className="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-label-md focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none"
+            className="w-full bg-surface-container-low border border-outline-variant/20 rounded-full py-2.5 pl-10 pr-4 text-label-md focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all outline-none"
             placeholder="Search orders, products, analytics..."
             type="text"
           />
@@ -41,22 +41,24 @@ export default function AdminHeader() {
 
         {/* Action Icons */}
         <div className="flex items-center gap-4 text-on-secondary-container">
-          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-1.5 rounded-full hover:bg-surface-container-high relative">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>
+          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high/40 active:scale-95 cursor-pointer relative">
+            <span className="material-symbols-outlined text-[20px]">
               notifications
             </span>
             {/* Notification Dot */}
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border border-surface"></span>
+            <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-white"></span>
           </button>
-          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-1.5 rounded-full hover:bg-surface-container-high">
-            <span className="material-symbols-outlined">settings</span>
+          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high/40 active:scale-95 cursor-pointer">
+            <span className="material-symbols-outlined text-[20px]">settings</span>
           </button>
-          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-1.5 rounded-full hover:bg-surface-container-high">
-            <span className="material-symbols-outlined">help</span>
+          <button className="text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100 flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high/40 active:scale-95 cursor-pointer">
+            <span className="material-symbols-outlined text-[20px]">help</span>
           </button>
 
+          <div className="h-px bg-outline-variant/30 w-4 rotate-90 hidden sm:block"></div>
+
           {/* Profile Avatar */}
-          <div className="h-8 w-8 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high ml-2 cursor-pointer transition-transform hover:scale-105 active:scale-95 shadow-sm">
+          <div className="h-9 w-9 rounded-full overflow-hidden border-2 border-primary/25 bg-surface-container-high cursor-pointer transition-all hover:scale-105 hover:border-primary active:scale-95 shadow-sm">
             <img
               className="w-full h-full object-cover"
               alt="Administrator Profile"

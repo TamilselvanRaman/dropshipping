@@ -87,7 +87,7 @@ export default function ManageOrders() {
     setTimeout(() => setToastMessage(null), 4000);
   };
 
-  // State transitions: Shipping an order
+  // Shipping updates
   const handleMarkShipped = (orderId: string) => {
     setOrders((prev) =>
       prev.map((o) => {
@@ -100,22 +100,19 @@ export default function ManageOrders() {
     );
   };
 
-  // Dynamic statistics calculations
+  // Dynamic stats
   const pendingCount = 42 - (orders.find((o) => o.id === "DI-92840")?.shippingStatus === "Shipped" ? 1 : 0);
   const transitCount = 156 + (orders.find((o) => o.id === "DI-92840")?.shippingStatus === "Shipped" ? 1 : 0);
   const refundedCount = 12;
   const completionRate = "99.2%";
 
-  // Tabs layout
   const tabs = ["All Orders", "Pending", "Confirmed", "Shipped", "Cancelled"];
 
-  // Filtering products based on selected tab
   const getFilteredOrders = () => {
     switch (activeTab) {
       case "Pending":
         return orders.filter((o) => o.shippingStatus === "Pending");
       case "Confirmed":
-        // mock confirmed orders
         return orders.filter((o) => o.shippingStatus === "Delivered");
       case "Shipped":
         return orders.filter((o) => o.shippingStatus === "Shipped");
@@ -129,13 +126,13 @@ export default function ManageOrders() {
   const filteredOrders = getFilteredOrders();
 
   return (
-    <div className="p-gutter max-w-[1440px] mx-auto space-y-8 relative">
+    <div className="p-4 max-w-[1440px] mx-auto space-y-6 relative">
       {/* Stats Quick Look Bento Grid */}
       <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-outline-variant/30">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 hover:-translate-y-1 transition-all duration-300">
           <div className="flex justify-between items-start mb-4">
-            <div className="p-2 bg-primary-container/20 rounded-lg text-primary">
-              <span className="material-symbols-outlined">pending_actions</span>
+            <div className="p-2 bg-primary/10 text-primary rounded-xl">
+              <span className="material-symbols-outlined text-[20px]">pending_actions</span>
             </div>
             <span className="text-xs font-bold text-primary">+12%</span>
           </div>
@@ -143,10 +140,10 @@ export default function ManageOrders() {
           <h3 className="font-display-lg text-headline-md mt-1">{pendingCount}</h3>
         </div>
 
-        <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-outline-variant/30">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 hover:-translate-y-1 transition-all duration-300">
           <div className="flex justify-between items-start mb-4">
-            <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400">
-              <span className="material-symbols-outlined">local_shipping</span>
+            <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-xl text-blue-600 dark:text-blue-400">
+              <span className="material-symbols-outlined text-[20px]">local_shipping</span>
             </div>
             <span className="text-xs font-bold text-blue-600 dark:text-blue-400">+8%</span>
           </div>
@@ -154,10 +151,10 @@ export default function ManageOrders() {
           <h3 className="font-display-lg text-headline-md mt-1">{transitCount}</h3>
         </div>
 
-        <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-outline-variant/30">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 hover:-translate-y-1 transition-all duration-300">
           <div className="flex justify-between items-start mb-4">
-            <div className="p-2 bg-tertiary-container/20 rounded-lg text-tertiary">
-              <span className="material-symbols-outlined">payments</span>
+            <div className="p-2 bg-tertiary-container/15 text-tertiary rounded-xl">
+              <span className="material-symbols-outlined text-[20px]">payments</span>
             </div>
             <span className="text-xs font-bold text-tertiary">-$420</span>
           </div>
@@ -165,10 +162,10 @@ export default function ManageOrders() {
           <h3 className="font-display-lg text-headline-md mt-1">{refundedCount}</h3>
         </div>
 
-        <div className="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 border border-outline-variant/30">
+        <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 hover:-translate-y-1 transition-all duration-300">
           <div className="flex justify-between items-start mb-4">
-            <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-700 dark:text-green-400">
-              <span className="material-symbols-outlined">task_alt</span>
+            <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-xl text-green-700 dark:text-green-400">
+              <span className="material-symbols-outlined text-[20px]">task_alt</span>
             </div>
             <span className="text-xs font-bold text-green-700 dark:text-green-400">99.2%</span>
           </div>
@@ -178,9 +175,9 @@ export default function ManageOrders() {
       </section>
 
       {/* Table Section Container */}
-      <section className="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden border border-outline-variant/30">
+      <section className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40 overflow-hidden">
         {/* Order Filters & Tabs */}
-        <div className="px-6 py-4 border-b border-outline-variant/30 bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="px-6 py-4 border-b border-outline-variant/30 bg-surface-container-low/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-center gap-1 overflow-x-auto hide-scrollbar">
             {tabs.map((tab) => {
               const isSelected = activeTab === tab;
@@ -188,7 +185,7 @@ export default function ManageOrders() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-5 py-2 text-label-md rounded-md transition-colors font-medium whitespace-nowrap cursor-pointer ${
+                  className={`px-5 py-2 text-label-md rounded-xl transition-all duration-300 font-medium whitespace-nowrap cursor-pointer ${
                     isSelected
                       ? "text-primary border-b-2 border-primary bg-primary/5 font-bold"
                       : "text-on-surface-variant hover:text-primary"
@@ -200,12 +197,12 @@ export default function ManageOrders() {
             })}
           </div>
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 bg-surface border border-outline-variant rounded-lg text-label-md font-bold hover:bg-surface-container-high transition-all active:scale-95">
-              <span className="material-symbols-outlined text-sm">filter_list</span>
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-900/50 border border-outline-variant/30 rounded-xl text-label-md font-bold hover:bg-surface-container-high/40 transition-all active:scale-95 cursor-pointer">
+              <span className="material-symbols-outlined text-[16px]">filter_list</span>
               <span>More Filters</span>
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-bold shadow-md hover:brightness-110 transition-all active:scale-95">
-              <span className="material-symbols-outlined text-sm">download</span>
+            <button className="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-xl text-label-md font-bold shadow-md hover:brightness-110 transition-all active:scale-95 cursor-pointer">
+              <span className="material-symbols-outlined text-[16px]">download</span>
               <span>Export CSV</span>
             </button>
           </div>
@@ -215,7 +212,7 @@ export default function ManageOrders() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-surface-container-high/30 text-on-surface-variant font-label-sm uppercase tracking-wider border-b border-outline-variant/30">
+              <tr className="bg-surface-container-low/30 text-on-surface-variant font-label-md text-label-sm uppercase tracking-widest text-[11px] border-b border-outline-variant/20">
                 <th className="px-6 py-4 font-semibold">Order ID</th>
                 <th className="px-6 py-4 font-semibold">Product Details</th>
                 <th className="px-6 py-4 font-semibold">Order Date</th>
@@ -240,7 +237,7 @@ export default function ManageOrders() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-lg overflow-hidden bg-surface-container border border-outline-variant/50 shrink-0">
+                        <div className="w-12 h-12 rounded-xl overflow-hidden bg-surface-container border border-outline-variant/30 shrink-0">
                           <img
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             alt={o.productName}
@@ -251,19 +248,19 @@ export default function ManageOrders() {
                           <p className="font-label-md text-on-surface font-semibold max-w-[180px] truncate leading-tight">
                             {o.productName}
                           </p>
-                          <p className="text-[10px] text-on-surface-variant uppercase font-bold mt-0.5">
+                          <p className="text-[10px] text-on-surface-variant uppercase font-bold mt-1 font-mono opacity-80">
                             Qty: {o.qty} • {o.variant}
                           </p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <p className="text-label-md text-on-surface">{o.date}</p>
-                      <p className="text-[10px] text-on-surface-variant mt-0.5">{o.time}</p>
+                      <p className="text-label-md text-on-surface leading-tight">{o.date}</p>
+                      <p className="text-[10px] text-on-surface-variant mt-1 font-medium opacity-80">{o.time}</p>
                     </td>
                     <td className="px-6 py-4">
                       <p className="text-label-md font-semibold text-on-surface">{o.customerName}</p>
-                      <p className="text-[10px] text-on-surface-variant mt-0.5">
+                      <p className="text-[10px] text-on-surface-variant mt-1 font-medium opacity-80">
                         {o.customerCity}, {o.customerState}
                       </p>
                     </td>
@@ -322,11 +319,11 @@ export default function ManageOrders() {
                             Mark Shipped
                           </button>
                         ) : (
-                          <button className="px-3 py-1.5 text-label-sm font-bold text-primary border border-primary/20 rounded-md hover:bg-primary/5 transition-colors active:scale-95">
+                          <button className="px-3 py-1.5 text-label-sm font-bold text-primary border border-primary/20 rounded-md hover:bg-primary/5 transition-colors active:scale-95 cursor-pointer">
                             Details
                           </button>
                         )}
-                        <button className="material-symbols-outlined text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high p-1 rounded transition-colors active:scale-95 cursor-pointer">
+                        <button className="material-symbols-outlined text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high/40 p-1.5 rounded-lg transition-colors active:scale-95 cursor-pointer">
                           more_vert
                         </button>
                       </div>
@@ -339,18 +336,18 @@ export default function ManageOrders() {
         </div>
 
         {/* Table Footer Pagination */}
-        <div className="px-6 py-4 bg-surface-container-lowest border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-label-md text-on-surface-variant">Showing 1 to {filteredOrders.length} of 2,402 entries</p>
+        <div className="px-6 py-4 bg-surface-container-lowest/30 border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-label-md text-on-surface-variant font-medium font-sans">Showing 1 to {filteredOrders.length} of 2,402 entries</p>
           <div className="flex items-center gap-1">
-            <button className="p-2 rounded hover:bg-surface-container-high transition-colors disabled:opacity-30 cursor-not-allowed" disabled>
+            <button className="p-2 rounded-lg border border-outline-variant/40 bg-white/40 dark:bg-slate-900/40 hover:bg-surface-container-high/40 transition-colors disabled:opacity-30 cursor-not-allowed" disabled>
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
             <button className="px-3 py-1 rounded bg-primary text-on-primary font-bold text-label-md">1</button>
-            <button className="px-3 py-1 rounded hover:bg-surface-container-high transition-colors text-label-md">2</button>
-            <button className="px-3 py-1 rounded hover:bg-surface-container-high transition-colors text-label-md">3</button>
+            <button className="px-3 py-1 rounded hover:bg-surface-container-high/40 transition-colors text-label-md cursor-pointer">2</button>
+            <button className="px-3 py-1 rounded hover:bg-surface-container-high/40 transition-colors text-label-md cursor-pointer">3</button>
             <span className="px-2">...</span>
-            <button className="px-3 py-1 rounded hover:bg-surface-container-high transition-colors text-label-md">240</button>
-            <button className="p-2 rounded hover:bg-surface-container-high transition-colors">
+            <button className="px-3 py-1 rounded hover:bg-surface-container-high/40 transition-colors text-label-md cursor-pointer">240</button>
+            <button className="p-2 rounded hover:bg-surface-container-high/40 transition-colors cursor-pointer">
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
           </div>
@@ -359,7 +356,7 @@ export default function ManageOrders() {
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-10 right-10 flex items-center gap-3 bg-on-surface text-surface py-3.5 px-6 rounded-xl shadow-2xl z-[100] transition-all animate-bounce">
+        <div className="fixed bottom-10 right-10 flex items-center gap-3 bg-on-surface text-surface py-3.5 px-6 rounded-xl shadow-2xl z-[100] transition-all duration-300 animate-bounce">
           <span className="material-symbols-outlined text-primary-fixed text-xl">check_circle</span>
           <span className="text-label-md font-semibold">{toastMessage}</span>
         </div>

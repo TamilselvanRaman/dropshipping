@@ -63,7 +63,7 @@ export default function ManageReturns() {
     setTimeout(() => setToastMessage(null), 4000);
   };
 
-  // Process return approval/rejection
+  // Decisions
   const handleProcessReturn = (id: string, newStatus: "APPROVED" | "REJECTED") => {
     setReturns((prev) =>
       prev.map((item) => {
@@ -77,17 +77,14 @@ export default function ManageReturns() {
     setSelectedReturn(null);
   };
 
-  // Dynamic statistics calculations
+  // Dynamic statistics
   const pendingCount = 12 - returns.filter((r) => r.id === "RET-45812" && r.status !== "PENDING").length;
   const processedPercentage = 84 + returns.filter((r) => r.id === "RET-45812" && r.status !== "PENDING").length;
 
-  // Filters mapping
   const filterOptions = ["All", "Pending", "Approved", "Rejected", "Picked Up"];
 
-  // Search and status tab filtering
   const getFilteredReturns = () => {
     return returns.filter((r) => {
-      // 1. Tab Status match
       const tabMatch =
         activeFilter === "All" ||
         (activeFilter === "Pending" && r.status === "PENDING") ||
@@ -95,7 +92,6 @@ export default function ManageReturns() {
         (activeFilter === "Rejected" && r.status === "REJECTED") ||
         (activeFilter === "Picked Up" && r.status === "PICKED UP");
 
-      // 2. Search query match
       const searchMatch =
         searchQuery === "" ||
         r.shopifyId.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -109,39 +105,39 @@ export default function ManageReturns() {
   const filteredReturns = getFilteredReturns();
 
   return (
-    <div className="p-gutter max-w-[1440px] mx-auto space-y-8 relative">
+    <div className="p-4 max-w-[1440px] mx-auto space-y-6 relative">
       {/* Welcome/Stats Bento Section */}
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 lg:col-span-8 bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+        <div className="col-span-12 lg:col-span-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-8 rounded-2xl border border-white/20 dark:border-slate-800/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col justify-between">
           <div>
             <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">Track and process your store returns</h3>
-            <p className="text-on-surface-variant font-body-md text-body-md max-w-2xl">
+            <p className="text-on-surface-variant font-body-md text-body-md max-w-2xl leading-relaxed">
               Effortlessly manage customer return requests, update statuses, and maintain transparency throughout the logistics cycle.
             </p>
           </div>
           <div className="mt-6 flex items-center gap-4 flex-wrap">
-            <button className="px-6 py-2.5 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold hover:brightness-110 transition-all active:scale-95 cursor-pointer shadow-md">
+            <button className="px-6 py-2.5 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-semibold hover:brightness-110 transition-all active:scale-95 cursor-pointer shadow-md shadow-primary/10">
               Process Batch
             </button>
-            <button className="px-6 py-2.5 bg-transparent border border-outline-variant text-on-surface-variant rounded-xl font-label-md text-label-md font-semibold hover:bg-surface-container-low transition-all active:scale-95">
+            <button className="px-6 py-2.5 bg-white/50 dark:bg-slate-900/50 border border-outline-variant/30 text-on-surface-variant rounded-xl font-label-md text-label-md font-semibold hover:bg-surface-container-low/40 transition-all active:scale-95 cursor-pointer">
               Export Report
             </button>
           </div>
         </div>
 
         <div className="col-span-12 lg:col-span-4 grid grid-cols-2 gap-4">
-          <div className="bg-surface-container-highest p-6 rounded-2xl flex flex-col items-center justify-center text-center shadow-sm">
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40">
             <span className="text-primary font-display-lg text-headline-md font-bold">{pendingCount}</span>
             <span className="text-label-md text-on-surface-variant uppercase tracking-wider font-semibold mt-1">Pending</span>
           </div>
-          <div className="bg-surface-container-highest p-6 rounded-2xl flex flex-col items-center justify-center text-center border-b-4 border-primary-container shadow-sm">
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-6 rounded-2xl flex flex-col items-center justify-center text-center border-b-4 border-primary-container shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-white/20 dark:border-slate-800/40">
             <span className="text-on-surface font-display-lg text-headline-md font-bold">{processedPercentage}%</span>
             <span className="text-label-md text-on-surface-variant uppercase tracking-wider font-semibold mt-1">Processed</span>
           </div>
-          <div className="col-span-2 bg-inverse-surface p-6 rounded-2xl flex items-center justify-between shadow-md">
+          <div className="col-span-2 bg-inverse-surface p-6 rounded-2xl flex items-center justify-between shadow-md border border-white/5">
             <div className="text-surface">
-              <p className="text-label-sm font-medium opacity-70">Average Return Time</p>
-              <p className="text-headline-sm font-bold text-white">3.2 Days</p>
+              <p className="text-label-sm font-medium opacity-70 text-surface/80">Average Return Time</p>
+              <p className="text-headline-sm font-bold text-white mt-0.5">3.2 Days</p>
             </div>
             <span className="material-symbols-outlined text-primary-fixed text-4xl">speed</span>
           </div>
@@ -149,8 +145,8 @@ export default function ManageReturns() {
       </div>
 
       {/* Filters Strip */}
-      <div className="bg-surface-container-low p-4 rounded-2xl border border-outline-variant/30 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex bg-surface-container-lowest p-1 rounded-lg border border-outline-variant/50 max-w-full overflow-x-auto hide-scrollbar">
+      <div className="bg-white/85 dark:bg-slate-900/85 backdrop-blur-md p-4 rounded-2xl border border-white/20 dark:border-slate-800/40 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+        <div className="flex bg-surface-container-lowest p-1 rounded-lg border border-outline-variant/30 max-w-full overflow-x-auto hide-scrollbar">
           {filterOptions.map((filter) => {
             const isSelected = activeFilter === filter;
             return (
@@ -160,7 +156,7 @@ export default function ManageReturns() {
                 className={`px-4 py-1.5 rounded-md text-label-md font-medium transition-all cursor-pointer whitespace-nowrap ${
                   isSelected
                     ? "bg-primary text-on-primary font-bold shadow-sm"
-                    : "text-on-surface-variant hover:bg-surface-container-high"
+                    : "text-on-surface-variant hover:bg-surface-container-high/40"
                 }`}
               >
                 {filter}
@@ -170,12 +166,12 @@ export default function ManageReturns() {
         </div>
 
         <div className="flex items-center gap-4 flex-wrap flex-grow sm:flex-grow-0">
-          {/* Date Picker Input (Mocked Style) */}
-          <div className="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/50 rounded-lg px-3 py-1.5 shadow-sm text-label-md">
+          {/* Date Picker Input */}
+          <div className="flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-3 py-1.5 shadow-sm text-label-md">
             <span className="material-symbols-outlined text-on-surface-variant text-[18px]">calendar_today</span>
-            <span className="text-on-surface-variant opacity-60">01/06/2024</span>
+            <span className="text-on-surface-variant opacity-70 font-medium">01/06/2024</span>
             <span className="text-outline-variant">→</span>
-            <span className="text-on-surface-variant opacity-60">30/06/2024</span>
+            <span className="text-on-surface-variant opacity-70 font-medium">30/06/2024</span>
           </div>
 
           {/* Search bar */}
@@ -187,23 +183,23 @@ export default function ManageReturns() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-surface-container-lowest border border-outline-variant/50 rounded-lg py-1.5 pl-9 pr-4 text-label-md w-48 focus:ring-1 focus:ring-primary outline-none"
+              className="bg-surface-container-lowest border border-outline-variant/30 rounded-lg py-1.5 pl-9 pr-4 text-label-md w-48 focus:ring-1 focus:ring-primary outline-none"
               placeholder="Search ID/Shopify..."
             />
           </div>
 
-          <button className="p-2 bg-surface-container-highest rounded-lg text-on-surface-variant hover:bg-outline-variant transition-colors active:scale-95 cursor-pointer">
+          <button className="p-2 bg-surface-container-highest/60 rounded-lg text-on-surface-variant hover:bg-outline-variant transition-colors active:scale-95 cursor-pointer">
             <span className="material-symbols-outlined text-[20px]">filter_list</span>
           </button>
         </div>
       </div>
 
       {/* Table Section */}
-      <div className="bg-surface-container-lowest rounded-2xl border border-outline-variant/30 shadow-sm overflow-hidden">
+      <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl border border-white/20 dark:border-slate-800/40 shadow-[0_8px_30px_rgba(0,0,0,0.02)] overflow-hidden">
         <div className="overflow-x-auto hide-scrollbar">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-surface-container-low border-b border-outline-variant/30 text-on-surface-variant font-label-md text-label-sm uppercase tracking-wider">
+              <tr className="bg-surface-container-low/40 border-b border-outline-variant/20 text-on-surface-variant font-label-md text-label-sm uppercase tracking-widest text-[11px]">
                 <th className="px-6 py-4 font-bold">Return ID</th>
                 <th className="px-6 py-4 font-bold">Product Details</th>
                 <th className="px-6 py-4 font-bold">Shopify ID</th>
@@ -222,23 +218,23 @@ export default function ManageReturns() {
                 </tr>
               ) : (
                 filteredReturns.map((item) => (
-                  <tr key={item.id} className="hover:bg-surface-container-low/50 transition-colors group">
+                  <tr key={item.id} className="hover:bg-surface-container/20 transition-colors group">
                     <td className="px-6 py-5 font-label-md text-on-surface font-bold">{item.id}</td>
                     <td className="px-6 py-5">
                       <div className="flex items-center">
-                        <div className="h-12 w-12 rounded-lg bg-surface-container border border-outline-variant shrink-0 mr-3 transition-transform duration-300 group-hover:scale-105">
+                        <div className="h-12 w-12 rounded-xl bg-surface-container border border-outline-variant/30 shrink-0 mr-3 transition-transform duration-300 group-hover:scale-105">
                           <img className="w-full h-full object-cover" alt={item.productName} src={item.image} />
                         </div>
                         <div>
                           <p className="font-label-md text-on-surface font-bold leading-tight">{item.productName}</p>
-                          <p className="text-xs text-on-surface-variant mt-0.5">{item.productDesc}</p>
+                          <p className="text-xs text-on-surface-variant mt-1 opacity-80">{item.productDesc}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-6 py-5 font-label-md text-on-surface-variant font-mono">{item.shopifyId}</td>
                     <td className="px-6 py-5">
                       <p className="font-label-md text-on-surface leading-tight">{item.orderDate}</p>
-                      <p className="text-xs text-on-surface-variant mt-0.5">{item.orderTime}</p>
+                      <p className="text-xs text-on-surface-variant mt-1 opacity-80">{item.orderTime}</p>
                     </td>
                     <td className="px-6 py-5">
                       {item.status === "PENDING" && (
@@ -285,20 +281,20 @@ export default function ManageReturns() {
         </div>
 
         {/* Pagination */}
-        <div className="bg-surface-container-low px-6 py-4 border-t border-outline-variant/30 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-label-md text-on-surface-variant">Showing 1 to {filteredReturns.length} of 42 entries</p>
+        <div className="bg-surface-container-low/30 px-6 py-4 border-t border-outline-variant/30 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-label-md text-on-surface-variant font-medium">Showing 1 to {filteredReturns.length} of 42 entries</p>
           <div className="flex items-center space-x-2">
-            <button className="p-1.5 rounded-lg border border-outline-variant/50 hover:bg-surface-container-high transition-all disabled:opacity-30 cursor-not-allowed" disabled>
+            <button className="p-1.5 rounded-lg border border-outline-variant/40 bg-white/40 dark:bg-slate-900/40 hover:bg-surface-container-high/40 transition-all disabled:opacity-30 cursor-not-allowed" disabled>
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
             <div className="flex items-center">
               <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary text-label-md font-bold">1</button>
-              <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-label-md font-medium">2</button>
-              <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-label-md font-medium">3</button>
+              <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high/40 text-label-md font-medium cursor-pointer">2</button>
+              <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high/40 text-label-md font-medium cursor-pointer">3</button>
               <span className="px-1 text-on-surface-variant">...</span>
-              <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-label-md font-medium">5</button>
+              <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high/40 text-label-md font-medium cursor-pointer">5</button>
             </div>
-            <button className="p-1.5 rounded-lg border border-outline-variant/50 hover:bg-surface-container-high transition-all">
+            <button className="p-1.5 rounded-lg border border-outline-variant/40 bg-white/40 dark:bg-slate-900/40 hover:bg-surface-container-high/40 transition-all cursor-pointer">
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
           </div>
@@ -316,29 +312,29 @@ export default function ManageReturns() {
       {/* Detail & Process Dialog Modal */}
       {selectedReturn && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-all duration-300">
-          <div className="bg-surface-container-lowest border border-outline-variant max-w-lg w-full rounded-2xl shadow-2xl p-6 relative overflow-hidden animate-zoomIn">
-            <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">Process Return Request</h3>
-            <p className="text-label-md text-on-surface-variant border-b border-outline-variant/30 pb-4 mb-4">
+          <div className="bg-white dark:bg-slate-900 border border-outline-variant/40 max-w-lg w-full rounded-3xl shadow-2xl p-6 relative overflow-hidden animate-zoomIn">
+            <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2 font-bold">Process Return Request</h3>
+            <p className="text-label-md text-on-surface-variant border-b border-outline-variant/20 pb-4 mb-4 font-medium">
               Return Request ID: <span className="font-mono font-bold text-on-surface">{selectedReturn.id}</span>
             </p>
 
             <div className="space-y-4">
               {/* Product Info */}
-              <div className="flex items-center gap-3 bg-surface p-4 rounded-xl border border-outline-variant/20">
-                <div className="h-16 w-16 rounded-lg overflow-hidden shrink-0">
+              <div className="flex items-center gap-3 bg-surface-container-low/60 p-4 rounded-xl border border-outline-variant/10">
+                <div className="h-16 w-16 rounded-xl overflow-hidden shrink-0 border border-outline-variant/20">
                   <img className="w-full h-full object-cover" alt={selectedReturn.productName} src={selectedReturn.image} />
                 </div>
                 <div>
                   <h4 className="font-body-md font-bold text-on-surface">{selectedReturn.productName}</h4>
-                  <p className="text-xs text-on-surface-variant">{selectedReturn.productDesc}</p>
-                  <p className="text-[11px] text-primary font-bold mt-1">Shopify Reference: {selectedReturn.shopifyId}</p>
+                  <p className="text-xs text-on-surface-variant mt-0.5">{selectedReturn.productDesc}</p>
+                  <p className="text-[11px] text-primary font-bold mt-1 font-mono">Shopify Reference: {selectedReturn.shopifyId}</p>
                 </div>
               </div>
 
               {/* Return reason */}
               <div>
-                <p className="text-label-md font-bold text-on-surface-variant">Reason for Return</p>
-                <div className="mt-1 bg-error-container/20 border border-error-container/30 px-4 py-3 rounded-lg text-error font-medium text-[13px] font-mono leading-relaxed">
+                <p className="text-label-md font-bold text-on-surface-variant mb-1">Reason for Return</p>
+                <div className="bg-error-container/20 border border-error-container/30 px-4 py-3 rounded-xl text-error font-medium text-[13px] font-mono leading-relaxed">
                   {selectedReturn.reason}
                 </div>
               </div>
@@ -347,20 +343,21 @@ export default function ManageReturns() {
               <div className="grid grid-cols-2 gap-4 text-label-md">
                 <div>
                   <p className="font-bold text-on-surface-variant">Request Date</p>
-                  <p className="text-on-surface mt-0.5">{selectedReturn.orderDate} at {selectedReturn.orderTime}</p>
+                  <p className="text-on-surface mt-1 font-medium">{selectedReturn.orderDate} at {selectedReturn.orderTime}</p>
                 </div>
                 <div>
                   <p className="font-bold text-on-surface-variant">Current Status</p>
-                  <p className="text-on-surface mt-0.5 uppercase font-bold">{selectedReturn.status}</p>
+                  <p className="text-on-surface mt-1 uppercase font-bold">{selectedReturn.status}</p>
                 </div>
               </div>
             </div>
 
             {/* Modal Actions */}
-            <div className="flex justify-end gap-3 mt-8 pt-4 border-t border-outline-variant/30">
+            <div className="flex justify-end gap-3 mt-8 pt-4 border-t border-outline-variant/20">
               <button
+                type="button"
                 onClick={() => setSelectedReturn(null)}
-                className="px-5 py-2 border border-outline-variant rounded-xl text-label-md font-semibold text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer"
+                className="px-5 py-2.5 border border-outline-variant/40 bg-white/40 dark:bg-slate-900/40 rounded-xl text-label-md font-semibold text-on-surface-variant hover:bg-surface-container-high/40 transition-colors cursor-pointer"
               >
                 Close
               </button>
@@ -368,13 +365,13 @@ export default function ManageReturns() {
                 <>
                   <button
                     onClick={() => handleProcessReturn(selectedReturn.id, "REJECTED")}
-                    className="px-5 py-2 bg-error text-white rounded-xl text-label-md font-bold hover:brightness-110 transition-colors cursor-pointer"
+                    className="px-5 py-2.5 bg-error text-white rounded-xl text-label-md font-bold hover:brightness-110 transition-colors cursor-pointer"
                   >
                     Reject
                   </button>
                   <button
                     onClick={() => handleProcessReturn(selectedReturn.id, "APPROVED")}
-                    className="px-5 py-2 bg-primary text-on-primary rounded-xl text-label-md font-bold hover:brightness-110 transition-colors cursor-pointer shadow-md"
+                    className="px-5 py-2.5 bg-primary text-on-primary rounded-xl text-label-md font-bold hover:brightness-110 transition-colors cursor-pointer shadow-md shadow-primary/10"
                   >
                     Approve Return
                   </button>
@@ -386,7 +383,7 @@ export default function ManageReturns() {
       )}
 
       {/* Footer Info */}
-      <footer className="py-6 border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between opacity-70 text-label-sm mt-8">
+      <footer className="py-6 border-t border-outline-variant/20 flex flex-col md:flex-row items-center justify-between opacity-70 text-label-sm mt-8">
         <p>© 2026 Dropship India. All rights reserved.</p>
         <div className="flex space-x-6 mt-4 md:mt-0">
           <a className="hover:text-primary transition-colors" href="#">Privacy Policy</a>
@@ -397,7 +394,7 @@ export default function ManageReturns() {
 
       {/* Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-10 right-10 flex items-center gap-3 bg-on-surface text-surface py-3.5 px-6 rounded-xl shadow-2xl z-[100] transition-all animate-bounce">
+        <div className="fixed bottom-10 right-10 flex items-center gap-3 bg-on-surface text-surface py-3.5 px-6 rounded-xl shadow-2xl z-[100] transition-all duration-300 animate-bounce">
           <span className="material-symbols-outlined text-primary-fixed text-xl">check_circle</span>
           <span className="text-label-md font-semibold">{toastMessage}</span>
         </div>
